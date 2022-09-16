@@ -4,11 +4,16 @@ const Schema = mongoose.Schema;
 const NoticeSchema = new Schema({
     title: {
         type: String,
+        required: true,
+        trim: true
+    },
+    file_path: {
+        type: String,
         required: true
     },
-    document: {
-        data: Buffer,
-        type: String
+    file_mimetype: {
+        type: String,
+        required: true
     },
     date: {
         type: Date,

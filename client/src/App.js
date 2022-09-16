@@ -76,6 +76,13 @@ import SearchRoomByHostel from './components/rooms/SearchRoomByHostel';
 import VacantRooms from './components/rooms/VacantRooms';
 
 
+// Notices
+import AddNotice from './components/notices/AddNotice';
+import AdminNoticeMain from './components/notices/AdminNoticeMain';
+import AllNotices from './components/notices/AllNotices';
+import Notices from './components/notices/Notices';
+
+
 const App = () => {
   useEffect(() => {
     if (localStorage.token) {
@@ -93,6 +100,7 @@ const App = () => {
       <Navbar/>
       <Routes>
         <Route path='/' element={<Landing />} />
+        <Route path='/notices' element={<Notices />} />
         <Route path='/studentLogin' element={<StudentLogin />} />
         <Route path='/studentRegister' element={<StudentRegister />} />
         <Route path='/adminLogin' element={<AdminLogin />} />
@@ -156,6 +164,11 @@ const App = () => {
             <Route path='vacant' element={<VacantRooms />} />
             <Route path='add' element={<AddRoom />} />
             <Route path='search' element={<SearchRoomByHostel />} />
+          </Route>
+
+          <Route path='notices' element={<AdminNoticeMain />}>
+            <Route index element={<AllNotices />} />
+            <Route path='add' element={<AddNotice />} />
           </Route>
 
         </Route>

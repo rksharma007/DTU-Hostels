@@ -1,84 +1,84 @@
 const express = require('express');
 const router = express.Router();
+const path = require('path');
+const multer = require('multer');
+const Notice = require('../../models/Notice');
+const auth = require('../../middleware/auth');
 const { check, validationResult }= require('express-validator');
 const ObjectId = require('mongodb').ObjectId;
 
-const auth = require('../../middleware/auth');
-const Notice = require('../../models/Notice');
 
-// Multer for upload
-const multer = require('multer');
-const storage = multer.diskStorage({
-    destination: (req, file, callback) => {
-        callback(null, '../../client/public/uploads/')
+const upload = multer({
+    storage: multer.diskStorage({
+      destination(req, file, cb) {
+        cb(null, '../../uploads');
+      },
+      filename(req, file, cb) {
+        cb(null, `${new Date().getTime()}_${file.originalname}`);
+      }
+    }),
+    limits: {
+      fileSize: 10000000 // max file size 1MB = 1000000 bytes
     },
-    filename: (req, file, callback) => {
-        callback(null, file.originalname);
+    fileFilter(req, file, cb) {
+      if (!file.originalname.match(/\.(jpeg|jpg|png|pdf|doc|docx|xlsx|xls)$/)) {
+        return cb(
+          new Error(
+            'only upload files with jpg, jpeg, png, pdf, doc, docx, xslx, xls format.'
+          )
+        );
+      }
+      cb(undefined, true); // continue with upload
     }
-});
-const upload = multer({storage: storage});
+  });
 
 
-// @route    GET api/notices
-// @desc     Get all notices
-// @access   Private
-router.get('/', async(req,res) => {
+router.post('/upload', upload.single('file'),
+    async (req, res) => {
+      try {
+        const { title, description } = req.body;
+        const { path, mimetype } = req.file;
+        const file = new File({
+          title,
+          description,
+          file_path: path,
+          file_mimetype: mimetype
+        });
+        await file.save();
+        res.send('file uploaded successfully.');
+      } catch (error) {
+        res.status(400).send('Error while uploading file. Try again later.');
+      }
+    },
+    (error, req, res, next) => {
+      if (error) {
+        res.status(500).send(error.message);
+      }
+    }
+  );
+  
+  router.get('/', async (req, res) => {
     try {
-        const notices = await Notice.find();
-        res.send(notices);
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+      const files = await File.find({});
+      const sortedByCreationDate = files.sort(
+        (a, b) => b.createdAt - a.createdAt
+      );
+      res.send(sortedByCreationDate);
+    } catch (error) {
+      res.status(400).send('Error while getting list of files. Try again later.');
     }
-});
-
-
-// @route    POST api/notices
-// @desc     Post a notice
-// @access   Private
-router.post('/', auth, upload.single('document'), [
-    check('title' , 'Specify your name').not().isEmpty()
-    ], async(req, res) => {
-
-        const errors = validationResult(req);
-        if(!errors.isEmpty()){
-            return res.status(400).json({errors: errors.array() });
-        }
-
-        const { title, document } = req.body;
-
-        try{
-            const notice = new Notice({
-                title,
-                document
-            });
-
-            await notice.save();
-            res.send(notice);
-
-        } catch(err) {
-            console.error(err.message);
-            res.status(500).send('Server error');
-        }
-});
-
-
-// @route    DELETE api/notices/:id
-// @desc     Delete notice
-// @access   Private
-router.delete('/:id', auth, async(req,res) => {
+  });
+  
+  router.get('/download/:id', async (req, res) => {
     try {
-        const id = ObjectId(req.params['id']); // convert to ObjectId
-        const notice = await Notice.findById({ _id: id });
-        if(!notice) return res.status(400).json({ errors: [{msg: 'Notice not found'}]});
-
-        await Notice.findByIdAndDelete({ _id: id});
-        res.send('Notice deleted!');
-    } catch (err) {
-        console.error(err.message);
-        res.status(500).send('Server Error');
+      const file = await File.findById(req.params.id);
+      res.set({
+        'Content-Type': file.file_mimetype
+      });
+      res.sendFile(path.join(__dirname, '..', file.file_path));
+    } catch (error) {
+      res.status(400).send('Error while downloading file. Try again later.');
     }
-});
-
-
-module.exports = router;
+  });
+  
+  module.exports = router;
