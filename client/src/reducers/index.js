@@ -1,0 +1,18 @@
+import { combineReducers } from "redux";
+import alert from './alert';
+import application from './application';
+import auth from './auth';
+import complaint from './complaint';
+import hostel from './hostel';
+import room from './room';
+import student from './student';
+
+export default combineReducers({
+    alert,
+    auth,
+    complaint,
+    application,
+    hostel,
+    room,
+    student
+});
