@@ -4,8 +4,10 @@ import application from './application';
 import auth from './auth';
 import complaint from './complaint';
 import hostel from './hostel';
+import notice from './notice';
 import room from './room';
 import student from './student';
+
 
 export default combineReducers({
     alert,
@@ -14,5 +16,6 @@ export default combineReducers({
     application,
     hostel,
     room,
-    student
+    student,
+    notice
 });

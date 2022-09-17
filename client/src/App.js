@@ -79,7 +79,7 @@ import VacantRooms from './components/rooms/VacantRooms';
 // Notices
 import AddNotice from './components/notices/AddNotice';
 import AdminNoticeMain from './components/notices/AdminNoticeMain';
-import AllNotices from './components/notices/AllNotices';
+import AdminNotices from './components/notices/AdminNotices';
 import Notices from './components/notices/Notices';
 
 
@@ -167,7 +167,8 @@ const App = () => {
           </Route>
 
           <Route path='notices' element={<AdminNoticeMain />}>
-            <Route index element={<AllNotices />} />
+            <Route index element={<AdminNotices />} />
+            <Route path='all' element={<AdminNotices />} />
             <Route path='add' element={<AddNotice />} />
           </Route>
 

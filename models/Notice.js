@@ -7,6 +7,11 @@ const NoticeSchema = new Schema({
         required: true,
         trim: true
     },
+    description: {
+        type: String,
+        required: true,
+        trim: true
+    },
     file_path: {
         type: String,
         required: true
