@@ -114,7 +114,7 @@ const AdminApplicationItem = ({
                     <button className='btn btn-danger' onClick={() => rejectApplication(_id)} style={{marginLeft: '20px'}}> Reject </button>
                 )}
                 {status === 'verified' && (
-                    <Link to={'allot'} state= {application_id}><p className='btn btn-gradient' style={{marginLeft: '20px'}}> Allot Room</p></Link>
+                    <Link to={'/adminDashboard/application/allot'} state= {application_id}><p className='btn btn-gradient' style={{marginLeft: '20px'}}> Allot Room</p></Link>
                 )}
                 {status === 'approved' && (
                     <button className='btn btn-success' onClick={() => verifyApplication(_id)} style={{marginLeft: '20px'}}> Verify </button>
