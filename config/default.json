@@ -1,5 +1,5 @@
 {
-    "mongoURI" : "mongodb+srv://rksharma007:PASSWORD@cluster0.zhk6t.mongodb.net/DTUHostels",
-    "jwtSecretAdmin" : "adminsecrettoken",
-    "jwtSecretStudent" : "studentsecrettoken"
+    "mongoURI" : "mongodb+srv://USERNAME:PASSWORD@cluster0.zhk6t.mongodb.net/DTUHostels",
+    "jwtSecretAdmin" : "ADMIN_TOKEN",
+    "jwtSecretStudent" : "STUDENT_TOKEN"
 }
