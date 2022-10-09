@@ -1,8 +1,0 @@
-{	
-    "mongoURI" : "mongodb+srv://rksharma007:181229Rk@cluster0.zhk6t.mongodb.net/DTUHostels",	
-    "jwtSecretAdmin" : "adminsecrettoken",	
-    "jwtSecretStudent" : "studentsecrettoken",	
-    "RAZORPAY_API_KEY" : "rzp_test_e1RC04sTHqTjdT",	
-    "RAZORPAY_API_SECRET" : "Him4ZMeKNkszgiEi5UBXWfsP",	
-    "PORT": 5000	
-}	
