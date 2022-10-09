@@ -1,5 +1,0 @@
-{
-    "mongoURI" : "mongodb+srv://USERNAME:PASSWORD@cluster0.zhk6t.mongodb.net/DTUHostels",
-    "jwtSecretAdmin" : "ADMIN_TOKEN",
-    "jwtSecretStudent" : "STUDENT_TOKEN"
-}
