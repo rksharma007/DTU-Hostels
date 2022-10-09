@@ -94,6 +94,10 @@ img {
   color: var(--primary-color);
 }
 
+.text-danger {
+  color: var(--danger-color);
+}
+
 .text-dark {
   color: var(--dark-color);
 }

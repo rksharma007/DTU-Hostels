@@ -382,6 +382,7 @@ router.put('/unallot/:application_id', auth, async (req,res) => {
         application.status = "verified";
         student.applicationstatus = 4;  // 0 means not applied, 1 means applied, 2 means rejected, 3 means approved, 4 means docs verified, 5 means allotted
         student.roomid = null;
+        student.feestatus = false;
         room.vacant = true;
         room.studentcount = room.studentcount-1;
 

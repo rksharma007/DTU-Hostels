@@ -1,9 +1,25 @@
 import propTypes from 'prop-types';
-import { React } from 'react';
+import { React, useEffect } from 'react';
 import { connect } from 'react-redux';
+import { getStudents, loadAdmin } from '../../actions/auth';
+import { getHostels } from '../../actions/hostel';
+import { getRooms } from '../../actions/room';
 import Calendar from './Calendar';
 
-const AdminDashboardMain = ({auth: {user}}) => {
+
+const AdminDashboardMain = ({auth: {user}, loadAdmin, getHostels, getRooms, getStudents}) => {
+  useEffect(() => {
+    loadAdmin();
+  }, [loadAdmin]);
+  useEffect(() => {
+    getStudents();
+  }, [getStudents]);
+  useEffect(() => {
+    getHostels();
+  }, [getHostels]);
+  useEffect(() => {
+    getRooms();
+  }, [getRooms]);
 
   return (
     <section className='container '>
@@ -41,11 +57,15 @@ const AdminDashboardMain = ({auth: {user}}) => {
 }
 
 AdminDashboardMain.propTypes = {
-  auth: propTypes.object.isRequired
+  auth: propTypes.object.isRequired,
+  loadAdmin: propTypes.func.isRequired,
+  getRooms: propTypes.func.isRequired,
+  getHostels: propTypes.func.isRequired,
+  getStudents: propTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   auth: state.auth
 });
 
-export default connect(mapStateToProps)(AdminDashboardMain);
+export default connect(mapStateToProps, {loadAdmin, getHostels, getStudents, getRooms})(AdminDashboardMain);

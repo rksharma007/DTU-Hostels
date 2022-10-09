@@ -10,9 +10,6 @@ const Application = ({
   auth, auth: {user},
   getMyApplication,
   deleteApplication,
-  application: {applications: {
-    _id
-  }},
   application: {applications},
   showActions
 }) => {

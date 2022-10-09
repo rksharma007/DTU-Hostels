@@ -12,7 +12,6 @@ import store from './store';
 import setAuthToken from './utils/setAuthToken';
 
 // Layout
-import Fees from './components/fees/Fees';
 import Alert from './components/layout/Alert';
 import Landing from './components/layout/Landing';
 import Navbar from './components/layout/Navbar';
@@ -83,6 +82,17 @@ import AdminNotices from './components/notices/AdminNotices';
 import Notices from './components/notices/Notices';
 
 
+// Fees
+import AdminFeesMain from './components/fees/AdminFeesMain';
+import AllFees from './components/fees/AllFees';
+import FeePay from './components/fees/FeePay';
+import FeeReceipt from './components/fees/FeeReceipt';
+import FeesMain from './components/fees/FeesMain';
+import PaidFees from './components/fees/PaidFees';
+import PaymentSuccess from './components/fees/PaymentSuccess';
+import PendingFees from './components/fees/PendingFees';
+
+
 const App = () => {
   useEffect(() => {
     if (localStorage.token) {
@@ -104,20 +114,35 @@ const App = () => {
         <Route path='/studentLogin' element={<StudentLogin />} />
         <Route path='/studentRegister' element={<StudentRegister />} />
         <Route path='/adminLogin' element={<AdminLogin />} />
+
+        {/* ----------------- Student ---------------- */}
+        
         <Route path='/studentDashboard' element={
               <PrivateRouteStudent>
                 <StudentDashboard />
               </PrivateRouteStudent>
             }>
           <Route index element={<StudentDashboardMain />} />
+          
             <Route path='application' element={<Application />}>
               <Route path='status' element={<ApplicationItem />} />
               <Route path='apply' element={<ApplicationForm />} />
             </Route>
+
             <Route path='page2' element={<Page2 />} />
-            <Route path='fees' element={<Fees />} />
+
+            <Route path='fees' element={<FeesMain/>}>
+              <Route index element={<FeeReceipt/>} />
+              {/* <Route path='verifypayment' element={<PaymentSuccess/>} /> */}
+              <Route path='payfee' element={<FeePay/>} />
+              <Route path='paymentsuccess' element={<PaymentSuccess/>} />
+              <Route path='receipts' element={<FeeReceipt/>} />
+            </Route>
+
             <Route path='complaints' element={<Complaints />} />
         </Route>
+
+        {/* ----------------- Admin ---------------- */}
         
         <Route path='/adminDashboard' element={
           <PrivateRouteAdmin>
@@ -171,6 +196,15 @@ const App = () => {
             <Route path='all' element={<AdminNotices />} />
             <Route path='add' element={<AddNotice />} />
           </Route>
+          
+          <Route path='fees' element={<AdminFeesMain />}>
+            <Route index element={<AllFees/>} />
+            <Route path='all' element={<AllFees />} />
+            <Route path='pending' element={<PendingFees />} />
+            <Route path='paid' element={<PaidFees />} />
+          </Route>
+
+          <Route path='mess' element={<Page2 />} />
 
         </Route>
         <Route path="*" element={<NotFound />} />

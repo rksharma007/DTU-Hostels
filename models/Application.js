@@ -109,6 +109,11 @@ const ApplicationSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    feestatus: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

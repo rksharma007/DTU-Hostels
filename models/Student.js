@@ -28,6 +28,11 @@ const StudentSchema = new mongoose.Schema({
         type: Number,
         default: 0
     },
+    feestatus: {
+        type: Boolean,
+        default: false,
+        required: true
+    },
     date: {
         type: Date,
         default: Date.now

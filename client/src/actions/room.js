@@ -1,7 +1,30 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import { ADD_ROOM, DELETE_ROOM, GET_ROOMS, REMOVE_STUDENT, ROOM_ERROR } from './types';
+import { loadStudent } from "./auth";
+import { ADD_ROOM, DELETE_ROOM, GET_MY_ROOM, GET_ROOMS, REMOVE_STUDENT, ROOM_ERROR } from './types';
 
+// Get logged in student's room
+export const getMyRoom = () => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        baseURL:'http://localhost:5000'
+    }
+    try {
+        const res = await axios.get('/api/rooms/me', config);
+        dispatch(loadStudent());
+        dispatch({
+            type: GET_MY_ROOM,
+            payload: res.data
+        });
+    } catch (err) {
+        dispatch({
+            type: ROOM_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status}
+        });
+    }
+}
 
 // Get rooms
 export const getRooms = () => async dispatch => {

@@ -1,11 +1,11 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import { setAlert } from './alert';
-import { getApplications } from './application';
+import { getApplications, getMyApplication } from './application';
 import { getHostels } from './hostel';
 import { getRooms } from './room';
 import {
-    ADMIN_LOADED, AUTH_ERROR, CLEAR_USER, GET_STUDENTS, LOGIN_FAIL,
+    ADMIN_LOADED, AUTH_ERROR, GET_STUDENTS, LOGIN_FAIL,
     LOGIN_SUCCESS, LOGOUT, REGISTER_FAIL, REGISTER_SUCCESS, STUDENT_ERROR, USER_LOADED
 } from './types';
 
@@ -32,6 +32,7 @@ export const loadStudent = () => async dispatch => {
             type: USER_LOADED,
             payload: res.data
         });
+
     } catch (err) {
         dispatch({
             type: AUTH_ERROR
@@ -92,6 +93,7 @@ export const studentLogin = ({ email, roll, password }) => async dispatch => {
         });
 
         dispatch(loadStudent());
+        dispatch(getMyApplication());
     } catch (err) {
         const errors = err.response.data.errors;
         if(errors){
@@ -104,11 +106,7 @@ export const studentLogin = ({ email, roll, password }) => async dispatch => {
     }
 }
 
-// LOGOUT
-export const logout = () => dispatch => {
-    dispatch({ type: LOGOUT });
-    dispatch({ type: CLEAR_USER});
-};
+
 
 // Get students
 export const getStudents = () => async dispatch => {
@@ -199,3 +197,9 @@ export const adminLogin = ({ email, password }) => async dispatch => {
         });
     }
 }
+
+// LOGOUT
+export const logout = () => dispatch => {
+    dispatch({ type: LOGOUT });
+    //dispatch({ type: CLEAR_USER});
+};

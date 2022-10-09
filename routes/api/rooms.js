@@ -4,6 +4,7 @@ const { check, validationResult }= require('express-validator');
 const ObjectId = require('mongodb').ObjectId;
 
 const auth = require('../../middleware/auth');
+const authStudent = require('../../middleware/authStudent');
 
 const Hostel = require('../../models/Hostel');
 const Room = require('../../models/Room');
@@ -78,7 +79,6 @@ router.post('/:hostel_id', auth, [
         const {roomno, floor, beds, acstatus} = req.body;
 
         try{
-
             const id = ObjectId(req.params['hostel_id']); // convert to ObjectId
             const hostel = await Hostel.findById({ _id: id });
             
@@ -111,8 +111,7 @@ router.post('/:hostel_id', auth, [
 // @route    GET api/rooms
 // @desc     Get all Rooms
 // @access   Private
-router.get('/', auth,
-    async (req,res) => {
+router.get('/', auth, async (req,res) => {
         
         try {
             const rooms = await Room.find();
@@ -122,6 +121,23 @@ router.get('/', auth,
             res.status(500).send('Server Error');
         }
     }
+);
+
+// @route    GET api/rooms/roomid
+// @desc     Get room by id
+// @access   Private
+router.get('/me', authStudent, async (req,res) => {
+    try {
+        const student = await Student.findOne({ _id: req.userId });
+        const roomid = student.roomid;
+        const room = await Room.find({ _id: roomid });
+        if(!room) return res.status(400).json({ errors: [{msg: 'Room not found'}]});
+        res.send(room);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('Server Error');
+    }
+}
 );
 
 // @route    GET api/rooms/:hostel_id/

@@ -46,6 +46,7 @@ export const ADD_HOSTEL = 'ADD_HOSTEL';
 export const HOSTEL_ERROR = 'HOSTEL_ERROR';
 
 //ROOM
+export const GET_MY_ROOM = 'GET_MY_ROOM';
 export const GET_ROOMS = 'GET_ROOMS';
 export const DELETE_ROOM = 'DELETE_ROOM';
 export const ADD_ROOM = 'ADD_ROOM';
@@ -59,5 +60,10 @@ export const NOTICE_ERROR = 'NOTICE_ERROR';
 export const DELETE_NOTICE = 'DELETE_NOTICE';
 export const DOWNLOAD_NOTICE = 'DOWNLOAD_NOTICE';
 
-
+//FEE
+export const GET_KEY = 'GET_KEY';
+export const CHECKOUT = 'CHECKOUT';
+export const RECEIPT = 'RECEIPT';
+export const FEE_ERROR = 'FEE_ERROR';
+export const LOAD_RECEIPTS = 'LOAD_RECEIPTS';
 

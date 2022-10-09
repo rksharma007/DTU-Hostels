@@ -1,4 +1,4 @@
-import { ADD_ROOM, DELETE_ROOM, GET_ROOMS, REMOVE_STUDENT, ROOM_ERROR } from '../actions/types';
+import { ADD_ROOM, DELETE_ROOM, GET_MY_ROOM, GET_ROOMS, REMOVE_STUDENT, ROOM_ERROR } from '../actions/types';
 
 const initialState = {
     room: null,
@@ -23,6 +23,12 @@ export default function foo(state = initialState, action) {
                 ...state,
                 rooms: [payload, ...state.rooms],
                 loading: false
+            };
+        case GET_MY_ROOM:
+            return {
+                ...state,
+                rooms: payload,
+                loading: false,
             };
         case GET_ROOMS:
             return {

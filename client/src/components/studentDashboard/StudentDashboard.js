@@ -1,8 +1,8 @@
 import propTypes from 'prop-types';
 import React, { useEffect, useRef, useState } from 'react';
+import Clock from 'react-live-clock';
 import { connect } from 'react-redux';
 import { Link, Outlet, useLocation } from 'react-router-dom';
-
 
 const sidebarNavItems = [
   {
@@ -68,7 +68,8 @@ const Sidebar = ()  => {
         ))
       }
       </div>
-        <div className='sidebar__footer'>
+      <div className='sidebar__footer'>
+        <Clock format={'HH:mm:ss'} ticking={true} timezone={'ASIA/Kolkata'} style={{color:'#17a2b8', borderStyle: 'solid', padding: '1rem', paddingTop: '.5rem', paddingBottom: '.5rem', borderRadius: '10px', backgroundColor: 'white'}}/>
       </div>
   </div>
 };
