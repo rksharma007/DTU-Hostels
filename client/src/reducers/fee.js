@@ -1,4 +1,4 @@
-import { CHECKOUT, FEE_ERROR, GET_KEY, LOAD_RECEIPTS } from '../actions/types';
+import { CHECKOUT, FEE_ERROR, GET_FEES, GET_KEY, LOAD_RECEIPTS } from '../actions/types';
 
 const initialState = {
     key: null,
@@ -22,6 +22,12 @@ export default function foo(state = initialState, action) {
             return {
                 ...state,
                 key: payload,
+                loading: false,
+            };
+        case GET_FEES:
+            return {
+                ...state,
+                receipt: payload,
                 loading: false,
             };
         case CHECKOUT:

@@ -163,9 +163,10 @@ img {
   border: none;
   cursor: pointer;
   margin-right: 0.5rem;
-  transition: opacity 0.2s ease-in;
+  transition: opacity 0.1s ease-in;
   outline: none;
   border: outset;
+  border-width: .1rem;
 }
 
 .badge {
@@ -317,9 +318,9 @@ button {
 }
 
 .table td {
-  padding: 1rem;
+  padding: .7rem;
   border-radius: 10px;
-  box-shadow: 1px 1px 1px 1px rgba(23,162,184,.3);
+  box-shadow: 1px 1px 2px 1px rgba(23,162,184,.3);
 }
 
 

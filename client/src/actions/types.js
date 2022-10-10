@@ -66,4 +66,4 @@ export const CHECKOUT = 'CHECKOUT';
 export const RECEIPT = 'RECEIPT';
 export const FEE_ERROR = 'FEE_ERROR';
 export const LOAD_RECEIPTS = 'LOAD_RECEIPTS';
-
+export const GET_FEES = 'GET_FEES';

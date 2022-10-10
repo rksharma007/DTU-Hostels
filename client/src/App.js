@@ -84,7 +84,7 @@ import Notices from './components/notices/Notices';
 
 // Fees
 import AdminFeesMain from './components/fees/AdminFeesMain';
-import AllFees from './components/fees/AllFees';
+import AllReceipts from './components/fees/AllReceipts';
 import FeePay from './components/fees/FeePay';
 import FeeReceipt from './components/fees/FeeReceipt';
 import FeesMain from './components/fees/FeesMain';
@@ -198,8 +198,8 @@ const App = () => {
           </Route>
           
           <Route path='fees' element={<AdminFeesMain />}>
-            <Route index element={<AllFees/>} />
-            <Route path='all' element={<AllFees />} />
+            <Route index element={<AllReceipts/>} />
+            <Route path='receipts' element={<AllReceipts/>} />
             <Route path='pending' element={<PendingFees />} />
             <Route path='paid' element={<PaidFees />} />
           </Route>

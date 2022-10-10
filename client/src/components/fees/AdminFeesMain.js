@@ -9,7 +9,7 @@ const AdminFeesMain = () => {
           <h1 className='text-primary lead'>Fees</h1>
         </div>
         <div style={{flex: '50%', padding: '2rem'}}>
-            <Link to={'all'}><div className='btn btn-primary'> All </div></Link>
+            <Link to={'receipts'}><div className='btn btn-primary'> Receipts </div></Link>
             <Link to={'pending'}><div className='btn btn-danger'> Pending </div></Link>
             <Link to={'paid'}><div className='btn btn-success'> Paid </div></Link>
         </div>

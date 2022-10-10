@@ -2,7 +2,7 @@ import axios from "axios";
 import { getMyApplication } from "./application";
 import { loadStudent } from "./auth";
 import { getMyRoom } from "./room";
-import { CHECKOUT, FEE_ERROR, GET_KEY, LOAD_RECEIPTS } from './types';
+import { CHECKOUT, FEE_ERROR, GET_FEES, GET_KEY, LOAD_RECEIPTS } from './types';
 
 
 // Get key
@@ -64,6 +64,29 @@ export const getMyReceipts = (application_id) => async dispatch => {
             payload: res.data
         });
         
+    } catch (err) {
+        dispatch({
+            type: FEE_ERROR,
+            payload: { msg: err.response.statusText, status: err.response.status}
+        });
+    }
+}
+
+// Get All Receipts
+export const getAllFees = () => async dispatch => {
+    const config = {
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        baseURL:'http://localhost:5000'
+    }
+    try {
+        const res = await axios.get('/api/fees', config);
+
+        dispatch({
+            type: GET_FEES,
+            payload: res.data
+        });
     } catch (err) {
         dispatch({
             type: FEE_ERROR,

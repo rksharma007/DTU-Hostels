@@ -8,6 +8,7 @@ const ObjectId = require('mongodb').ObjectId;
 const keyId = config.get('RAZORPAY_API_KEY');
 const keySecret = config.get('RAZORPAY_API_SECRET');
 
+const auth = require('../../middleware/auth');
 const Fee = require('../../models/Fees');
 const Application = require('../../models/Application');
 const Student = require('../../models/Student');
@@ -16,6 +17,19 @@ const authStudent = require('../../middleware/authStudent');
 const instance = new Razorpay({
     key_id: keyId,
     key_secret: keySecret,
+});
+
+// @route    GET api/fees
+// @desc     Get all fees
+// @access   Private
+router.get('/', auth, async(req,res) => {
+  try {
+      const fees = await Fee.find();
+      res.send(fees);
+  } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server Error');
+  }
 });
 
 // @route    GET api/fees/getKey
