@@ -12,11 +12,11 @@ const Navbar = ({ auth: { isAuthenticated, loading}, logout }) => {
         <Link to='/'> DTU Hostels</Link>
       </h1>
       <ul>
-        <li><Link to='/boysHostel'>Boys Hostels</Link></li>
-	      <li><Link to='/girlsHostel'>Girls Hostels</Link></li>
-        <li><Link to='/hostelFacilities'>Facilities</Link></li>
+        <li><a href= 'http://hostels.dtu.ac.in/1/?page_id=72' target="_blank" rel="noopener noreferrer">Boys Hostel</a></li>
+        <li><a href= 'http://hostels.dtu.ac.in/1/?page_id=113' target="_blank" rel="noopener noreferrer">Girls Hostel</a></li>
+        <li><a href= 'http://hostels.dtu.ac.in/1/?page_id=18' target="_blank" rel="noopener noreferrer">Facilities</a></li>
 	      <li><Link to='/notices'>Notices</Link></li>
-	      <li><Link to='/contact'>Contact</Link></li>
+        <li><a href= 'http://hostels.dtu.ac.in/1/?page_id=130' target="_blank" rel="noopener noreferrer">Contact</a></li>
         <li>
           { isAuthenticated && 
             (
