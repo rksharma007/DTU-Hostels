@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Link, Navigate } from 'react-router-dom';
 import { studentLogin } from '../../actions/auth';
 
-const StudentLogin = ({ studentLogin, isAuthenticated }) => {
+const StudentLogin = ({ studentLogin, auth:{isAuthenticated, user} }) => {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -31,7 +31,7 @@ const StudentLogin = ({ studentLogin, isAuthenticated }) => {
   return (
     <section className="container">
       <h1 className="large text-primary">Student Login</h1>
-      <p className="lead"><i className="fas fa-user"></i> Sign Into Your Account</p>
+      <p className="lead"><i className="fas fa-user"></i> Sign in to your account</p>
       <form className="form" onSubmit={ e => onSubmit(e)}>
         <div className="form-group">
           <input type="text" placeholder="Roll (format: 2KXX/XX/XXX)" name="roll" required onChange={e => onChange(e)} />
@@ -61,11 +61,11 @@ const StudentLogin = ({ studentLogin, isAuthenticated }) => {
 
 StudentLogin.propTypes = {
   studentLogin: propTypes.func.isRequired,
-  isAuthenticated: propTypes.bool
+  auth: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated,
+  auth: state.auth
   
 });
 

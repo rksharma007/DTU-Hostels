@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import { adminLogin } from '../../actions/auth';
 
-const AdminLogin = ({ adminLogin, isAuthenticated }) => {
+const AdminLogin = ({ adminLogin, auth:{isAuthenticated, user }}) => {
 
   const [formData, setFormData] = useState({
     email: '',
@@ -21,14 +21,14 @@ const AdminLogin = ({ adminLogin, isAuthenticated }) => {
   };
 
     // Navigate to dashboard if authenticated
-    if(isAuthenticated) {
+    if(isAuthenticated && user) {
       return <Navigate to = '/adminDashboard'/>
     }
 
   return (
     <section className="container">
       <h1 className="large text-primary">Admin Login</h1>
-      <p className="lead"><i className="fas fa-user"></i> Sign Into Admin Account</p>
+      <p className="lead"><i className="fas fa-user"></i> Sign in to admin account</p>
       <form className="form" onSubmit={ e => onSubmit(e)}>
         <div className="form-group">
           <input
@@ -57,11 +57,11 @@ const AdminLogin = ({ adminLogin, isAuthenticated }) => {
 
 AdminLogin.propTypes = {
   adminLogin: propTypes.func.isRequired,
-  isAuthenticated: propTypes.bool
+  auth: propTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  isAuthenticated: state.auth.isAuthenticated
+  auth: state.auth
 });
 
 export default connect(mapStateToProps, {adminLogin})(AdminLogin);

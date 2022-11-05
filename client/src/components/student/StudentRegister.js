@@ -39,7 +39,7 @@ const StudentRegister = ({ setAlert, studentRegister, isAuthenticated }) => {
   return (
     <section className="container">
       <h1 className="large text-primary">Student Registration</h1>
-      <p className="lead"><i className="fas fa-user"></i> Create Your Student Account</p>
+      <p className="lead"><i className="fas fa-user"></i> Create your hostel account</p>
       <form className="form" onSubmit={ e => onSubmit(e)}>
         <div className="form-group">
           <input type="text" placeholder="Name" name="name" required onChange={e => onChange(e)} />
