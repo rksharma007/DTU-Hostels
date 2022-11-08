@@ -10,8 +10,7 @@ export const getKey = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/fees/getKey', config);
@@ -53,8 +52,7 @@ export const getMyReceipts = (application_id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get(`/api/fees/receipts/${application_id}`, config);
@@ -77,8 +75,7 @@ export const getAllFees = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/fees', config);

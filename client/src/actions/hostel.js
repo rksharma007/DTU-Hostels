@@ -7,8 +7,7 @@ export const getHostels = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/hostels', config);
@@ -31,8 +30,7 @@ export const addHostel = (formData, navigate) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.post('/api/hostels', formData, config);
@@ -58,8 +56,7 @@ export const deleteHostel = _id => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     if(window.confirm('Are you sure about DELETING HOSTEL? This can NOT be undone!')) {
         try {

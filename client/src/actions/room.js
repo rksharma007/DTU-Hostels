@@ -8,8 +8,7 @@ export const getMyRoom = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/rooms/me', config);
@@ -31,8 +30,7 @@ export const getRooms = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/rooms', config);
@@ -55,8 +53,7 @@ export const addRoom = (formData, navigate) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.post(`/api/rooms/add`, formData, config);
@@ -83,8 +80,7 @@ export const removeStudent = (room_id, student_id, navigate) => async dispatch =
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.put(`/api/rooms/remove/${room_id}/${student_id}`, config);
@@ -111,8 +107,7 @@ export const deleteRoom= _id => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     if(window.confirm('Are you sure about DELETING ROOM? This can NOT be undone!')) {
         try {

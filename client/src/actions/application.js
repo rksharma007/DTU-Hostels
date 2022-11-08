@@ -8,8 +8,7 @@ export const getMyApplication = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/application/me', config);
@@ -32,8 +31,7 @@ export const getApplications = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/application/', config);
@@ -54,8 +52,7 @@ export const addApplication = (formData, navigate) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.post('/api/application/apply', formData, config);
@@ -85,8 +82,7 @@ export const rejectApplication = (id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
 
     try {
@@ -112,8 +108,7 @@ export const approveApplication = (id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
 
     try {
@@ -139,8 +134,7 @@ export const verifyApplication = (id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
 
     try {
@@ -166,8 +160,7 @@ export const allotApplication = (formData, navigate) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.put('/api/application/allot', formData, config);
@@ -194,8 +187,7 @@ export const unallotApplication = (id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
 
     try {
@@ -218,9 +210,6 @@ export const unallotApplication = (id) => async dispatch => {
 
 // Delete Application
 export const deleteApplication = (_id, navigate) => async dispatch => {
-    const config = {
-        baseURL:'http://localhost:5000'
-    }
     if(window.confirm('Are you sure about DELETING YOUR APPLICATION? This can NOT be undone!')) {
         try {
             await axios.delete(`/api/application/delByStudent/${_id}`, config);

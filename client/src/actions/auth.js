@@ -22,8 +22,7 @@ export const loadStudent = () => async dispatch => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Methods": "GET, PUT, POST"
-            },
-            baseURL:'http://localhost:5000'
+            }
         }
 
         const res = await axios.get('/api/students/me', config);
@@ -50,8 +49,7 @@ export const studentRegister = ({ name, roll, email, password }) => async dispat
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Methods": "PUT,POST,DELETE"
-            },
-            baseURL:'http://localhost:5000'
+            }
         }
 
         const res = await axios.post('/api/students/register', body, config);
@@ -82,8 +80,7 @@ export const studentLogin = ({ email, roll, password }) => async dispatch => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-            },
-            baseURL:'http://localhost:5000'
+            }
         }
 
         const res = await axios.post('/api/students/login', body, config);
@@ -113,8 +110,7 @@ export const getStudents = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/students', config);
@@ -145,8 +141,7 @@ export const loadAdmin = () => async dispatch => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Methods": "GET, PUT, POST"
-            },
-            baseURL:'http://localhost:5000'
+            }
         }
 
         const res = await axios.get('/api/admin/me', config);
@@ -171,8 +166,7 @@ export const adminLogin = ({ email, password }) => async dispatch => {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': 'http://localhost:3000',
                 "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS"
-            },
-            baseURL:'http://localhost:5000'
+            }
         }
 
         const res = await axios.post('/api/admin/login', body, config);

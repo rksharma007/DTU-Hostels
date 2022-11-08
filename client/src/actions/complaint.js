@@ -8,8 +8,7 @@ export const getMyComplaints = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/complaints/me', config);
@@ -32,8 +31,7 @@ export const getComplaints = () => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.get('/api/complaints', config);
@@ -55,8 +53,7 @@ export const changeStatusComplaint = (id) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
 
     try {
@@ -83,8 +80,7 @@ export const addComplaint = formData => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.post('/api/complaints', formData, config);
@@ -107,8 +103,7 @@ export const deleteComplaint = _id => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'application/json',
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         await axios.delete(`/api/complaints/${_id}`, config);

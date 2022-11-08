@@ -34,8 +34,7 @@ export const addNotice = (formData) => async dispatch => {
     const config = {
         headers: {
             'Content-Type': 'multipart/form-data'
-        },
-        baseURL:'http://localhost:5000'
+        }
     }
     try {
         const res = await axios.post('/api/notices/upload', formD, config);
