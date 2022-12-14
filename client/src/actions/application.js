@@ -211,6 +211,11 @@ export const unallotApplication = (id) => async dispatch => {
 // Delete Application
 export const deleteApplication = (_id, navigate) => async dispatch => {
     if(window.confirm('Are you sure about DELETING YOUR APPLICATION? This can NOT be undone!')) {
+        const config = {
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        }
         try {
             await axios.delete(`/api/application/delByStudent/${_id}`, config);
 
